@@ -1,0 +1,16 @@
+﻿# Ignore everything by default
+*
+
+# Allow these specific files
+!app.py
+!requirements.txt
+!Dockerfile
+
+# Ignore common unnecessary files
+.git/
+.vscode/
+venv/
+__pycache__/
+*.pyc
+*.db
+*.log
