@@ -1,0 +1,32 @@
+{
+    "info": {
+        "name": "URL Shortener Test",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Shorten URL",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"url\": \"https://www.youtube.com/watch?v=QGqK3cmmvX0\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/shorten",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["shorten"]
+                }
+            },
+            "response": []
+        }
+    ]
+}

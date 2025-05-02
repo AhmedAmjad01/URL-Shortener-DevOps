@@ -1,0 +1,11 @@
+# Core
+flask==3.0.2
+gunicorn==21.2.0
+
+# Monitoring (optional)
+prometheus-flask-exporter==0.22.4
+blinker==1.7.0  # For Flask signals
+
+# Security
+python-dotenv==1.0.0  # For environment variables
+
