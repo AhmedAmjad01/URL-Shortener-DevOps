@@ -1,0 +1,32 @@
+name: Deploy URL Shortener
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'URL-Shortener-DevOps/**'  # Only trigger when files in your dir change
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./URL-Shortener-DevOps  # All commands run in your subdir
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./URL-Shortener-DevOps
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/url-shortener .
+      - run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/url-shortener
